@@ -12,7 +12,7 @@ from django.views import generic
 from django.views.generic import FormView, RedirectView
 
 from apps.customer.models import Customer
-from apps.driver.forms.forms import UpdateCustomerForm, DriverSignUpForm
+from apps.driver.forms.forms import UpdateCustomerForm, DriverSignUpForm, UpdateDriverForm
 
 
 class SignupView(generic.CreateView):
@@ -45,7 +45,7 @@ class LogoutView(RedirectView):
 
 
 class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
-    form_class = UpdateCustomerForm
+    form_class = UpdateDriverForm
     success_url = '/'
     template_name = 'driver_update_profile.html'
     model = Customer

@@ -25,7 +25,7 @@ class DriverSignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 
-class UpdateCustomerForm(ModelForm):
+class UpdateDriverForm(ModelForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
