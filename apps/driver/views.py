@@ -12,7 +12,8 @@ from django.views import generic
 from django.views.generic import FormView, RedirectView
 
 from apps.customer.models import Customer
-from apps.driver.forms.forms import UpdateCustomerForm, DriverSignUpForm, UpdateDriverForm
+from apps.driver.forms.forms import DriverSignUpForm, UpdateDriverForm
+from apps.driver.models import Driver
 
 
 class SignupView(generic.CreateView):
@@ -22,8 +23,8 @@ class SignupView(generic.CreateView):
 
 
 class LoginView(FormView):
-    success_url = '/'
     form_class = AuthenticationForm
+    success_url = 'driver_home'
     template_name = 'driver_login.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -37,7 +38,7 @@ class LoginView(FormView):
 
 
 class LogoutView(RedirectView):
-    url = '/'
+    url = 'home.html'
 
     def get(self, request, *args, **kwargs):
         logout(request)
@@ -46,9 +47,9 @@ class LogoutView(RedirectView):
 
 class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = UpdateDriverForm
-    success_url = '/'
+    success_url = 'driver_home.html'
     template_name = 'driver_update_profile.html'
-    model = Customer
+    model = Driver
 
     def get_object(self, queryset=None):
         return get_object_or_404(User, pk=self.request.user.id)

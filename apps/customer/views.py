@@ -10,7 +10,7 @@ from django.views.generic import FormView, RedirectView
 
 from apps.customer.forms.forms import CustomerSignUpForm
 from apps.customer.models import Customer
-from apps.driver.forms.forms import UpdateCustomerForm
+from apps.customer.forms.forms import UpdateCustomerForm
 
 
 class SignupView(generic.CreateView):
@@ -20,7 +20,7 @@ class SignupView(generic.CreateView):
 
 
 class LoginView(FormView):
-    success_url = '/'
+    success_url = 'customer_home.html'
     form_class = AuthenticationForm
     template_name = 'customerlogin.html'
 
@@ -35,7 +35,7 @@ class LoginView(FormView):
 
 
 class LogoutView(RedirectView):
-    url = '/'
+    url = 'home.html'
 
     def get(self, request, *args, **kwargs):
         logout(request)
@@ -44,7 +44,7 @@ class LogoutView(RedirectView):
 
 class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = UpdateCustomerForm
-    success_url = '/'
+    success_url = 'customer_home.html'
     template_name = 'customerupdateprofile.html'
     model = Customer
 
