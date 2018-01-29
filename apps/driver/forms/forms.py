@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import  ModelForm
 from django import forms
 
-from apps.driver.models import Driver
+from apps.customer.models import Driver
 
 
 class DriverSignUpForm(UserCreationForm):
@@ -42,7 +42,6 @@ class UpdateDriverForm(ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         profile = user.driver_profile
-        profile.phone_number = self.cleaned_data['phone_number']
 
         if commit:
             user.save()
@@ -51,4 +50,4 @@ class UpdateDriverForm(ModelForm):
 
     class Meta:
         model = Driver
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')

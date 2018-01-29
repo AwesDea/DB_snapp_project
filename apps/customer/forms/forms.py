@@ -42,7 +42,6 @@ class UpdateCustomerForm(ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         profile = user.customer_profile
-        profile.phone_number = self.cleaned_data['phone_number']
 
         if commit:
             user.save()
@@ -51,4 +50,4 @@ class UpdateCustomerForm(ModelForm):
 
     class Meta:
         model = Customer
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
