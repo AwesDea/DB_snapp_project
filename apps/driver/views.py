@@ -13,7 +13,7 @@ from django.views.generic import FormView, RedirectView
 
 from apps.customer.models import Customer
 from apps.driver.forms.forms import DriverSignUpForm, UpdateDriverForm
-from apps.driver.models import Driver
+from apps.customer.models import Driver
 
 
 class SignupView(generic.CreateView):
